@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Website</title>
+
+  <!-- Basic styling -->
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+    }
+
+    body {
+      background: #0f172a;
+      color: #e5e7eb;
+      line-height: 1.6;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(15, 23, 42, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #1f2937;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+
+    .logo {
+      font-weight: 700;
+      font-size: 1.3rem;
+      letter-spacing: 0.05em;
+    }
+
+    .logo span {
+      color: #38bdf8;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      font-size: 0.95rem;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #e5e7eb;
+      opacity: 0.85;
+      position: relative;
+      padding-bottom: 2px;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      background: #38bdf8;
+      transition: width 0.2s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-links a:hover {
+      opacity: 1;
+    }
+
+    /* Hero section */
+    .hero {
+      padding: 4rem 0 3rem;
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .hero-text h1 {
+      font-size: clamp(2.2rem, 4vw, 3rem);
+      margin-bottom: 1rem;
+    }
+
+    .hero-text h1 span {
+      color: #38bdf8;
+    }
+
+    .hero-text p {
+      color: #9ca3af;
+      max-width: 32rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      border-radius: 999px;
+      padding: 0.7rem 1.4rem;
+      border: 1px solid transparent;
+      font-size: 0.95rem;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      transition: transform 0.12s ease, box-shadow 0.12s ease,
+        background 0.2s ease, border-color 0.2s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #0ea5e9, #22c55e);
+      color: #0b1120;
+      font-weight: 600;
+      box-shadow: 0 15px 35px rgba(34, 197, 94, 0.25);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 18px 40px rgba(34, 197, 94, 0.32);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border-color: #4b5563;
+      color: #e5e7eb;
+    }
+
+    .btn-outline:hover {
+      border-color: #38bdf8;
+      background: rgba(15, 23, 42, 0.9);
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.8rem;
+      padding: 0.3rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid #1f2937;
+      background: rgba(15, 23, 42, 0.9);
+      margin-bottom: 0.8rem;
+      color: #9ca3af;
+    }
+
+    .hero-tag-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.25);
+    }
+
+    .hero-card {
+      background: radial-gradient(circle at top, #1f2937, #020617);
+      border-radius: 1.5rem;
+      padding: 1.6rem;
+      border: 1px solid #1f2937;
+      box-shadow: 0 20px 45px rgba(15, 23, 42, 0.8);
+    }
+
+    .hero-card-title {
+      font-size: 0.95rem;
+      color: #9ca3af;
+      margin-bottom: 0.6rem;
+    }
+
+    .hero-card-value {
+      font-size: 2.3rem;
+      font-weight: 700;
+      margin-bottom: 1.2rem;
+    }
+
+    .hero-card-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      margin-bottom: 0.6rem;
+      color: #9ca3af;
+    }
+
+    .hero-card-chip {
+      display: inline-flex;
+      font-size: 0.75rem;
+      padding: 0.25rem 0.6rem;
+      border-radius: 999px;
+      border: 1px solid #334155;
+      margin-top: 0.7rem;
+      color: #9ca3af;
+    }
+
+    /* Sections */
+    section {
+      padding: 3.5rem 0;
+      border-top: 1px solid #111827;
+    }
+
+    section h2 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    section p.section-subtitle {
+      color: #9ca3af;
+      font-size: 0.95rem;
+      margin-bottom: 2rem;
+      max-width: 38rem;
+    }
+
+    /* Cards grid */
+    .grid {
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    @media (min-width: 768px) {
+      .grid-3 {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    .card {
+      background: #020617;
+      border-radius: 1rem;
+      padding: 1.4rem;
+      border: 1px solid #111827;
+      transition: transform 0.15s ease, box-shadow 0.15s ease,
+        border-color 0.15s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      border-color: #1f2937;
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.9);
+    }
+
+    .card-title {
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .card-text {
+      font-size: 0.9rem;
+      color: #9ca3af;
+      margin-bottom: 0.5rem;
+    }
+
+    /* Contact */
+    .contact-grid {
+      display: grid;
+      gap: 2rem;
+    }
+
+    @media (min-width: 768px) {
+      .contact-grid {
+        grid-template-columns: 3fr 2fr;
+      }
+    }
+
+    .contact-form {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .form-group {
+      display: grid;
+      gap: 0.3rem;
+      font-size: 0.9rem;
+    }
+
+    .form-group label {
+      color: #d1d5db;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      padding: 0.6rem 0.8rem;
+      border-radius: 0.6rem;
+      border: 1px solid #111827;
+      background: #020617;
+      color: #e5e7eb;
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: #38bdf8;
+      box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.4);
+    }
+
+    textarea {
+      min-height: 130px;
+      resize: vertical;
+    }
+
+    footer {
+      border-top: 1px solid #111827;
+      padding: 1.5rem 0;
+      font-size: 0.85rem;
+      color: #6b7280;
+      text-align: center;
+    }
+
+    footer a {
+      color: #9ca3af;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Mobile */
+    @media (max-width: 767px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      nav {
+        flex-direction: column;
+        justify-content: center;
+        gap: 0.5rem;
+        height: auto;
+        padding: 0.6rem 0;
+      }
+
+      .nav-links {
+        font-size: 0.85rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header / Navbar -->
+  <header>
+    <div class="container">
+      <nav>
+        <div class="logo">
+          My<span>Site</span>
+        </div>
+        <div class="nav-links">
+          <a href="#home">Home</a>
+          <a href="#about">About</a>
+          <a href="#services">Services</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <main id="home">
+    <div class="container">
+      <section class="hero">
+        <div class="hero-text">
+          <div class="hero-tag">
+            <span class="hero-tag-dot"></span>
+            Portfolio / Personal Website
+          </div>
+          <h1>
+            Hey, I'm <span>Your Name</span> 👋<br />
+            I build clean, modern web experiences.
+          </h1>
+          <p>
+            This is a simple starter website template. You can edit all the
+            text here to describe who you are, what you do, or what your brand
+            is about.
+          </p>
+          <div class="hero-buttons">
+            <a href="#contact" class="btn btn-primary">Contact Me</a>
+            <a href="#services" class="btn btn-outline">View Services</a>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <div class="hero-card-title">At a glance</div>
+          <div class="hero-card-value">+3 yrs</div>
+          <div class="hero-card-row">
+            <span>Projects completed</span>
+            <span>25+</span>
+          </div>
+          <div class="hero-card-row">
+            <span>Happy clients</span>
+            <span>15+</span>
+          </div>
+          <div class="hero-card-row">
+            <span>Tech</span>
+            <span>HTML · CSS · JS</span>
+          </div>
+          <div class="hero-card-chip">
+            ✨ You can change these stats easily in the code.
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- About -->
+    <section id="about">
+      <div class="container">
+        <h2>About Me</h2>
+        <p class="section-subtitle">
+          Replace this section with your story. Who are you, what do you do, and
+          what makes you different?
+        </p>
+        <div class="grid">
+          <div class="card">
+            <h3 class="card-title">Background</h3>
+            <p class="card-text">
+              I'm a developer / student / creator who enjoys building clean and
+              minimal digital experiences.
+            </p>
+          </div>
+          <div class="card">
+            <h3 class="card-title">Skills</h3>
+            <p class="card-text">
+              HTML, CSS, JavaScript, C++, Python, Data Structures, and more.
+              Update this to match your real skills.
+            </p>
+          </div>
+          <div class="card">
+            <h3 class="card-title">Goals</h3>
+            <p class="card-text">
+              My goal is to keep learning, ship useful projects, and work with
+              amazing people.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services / Projects -->
+    <section id="services">
+      <div class="container">
+        <h2>What I Do</h2>
+        <p class="section-subtitle">
+          Describe your services or projects. You can rename this section to
+          "Projects" and showcase your work instead.
+        </p>
+        <div class="grid grid-3">
+          <div class="card">
+            <h3 class="card-title">Web Development</h3>
+            <p class="card-text">
+              I create responsive websites using modern HTML, CSS, and
+              JavaScript that look good on all devices.
+            </p>
+          </div>
+          <div class="card">
+            <h3 class="card-title">UI Design</h3>
+            <p class="card-text">
+              Simple and clean UI layouts focused on usability and clarity.
+            </p>
+          </div>
+          <div class="card">
+            <h3 class="card-title">Programming</h3>
+            <p class="card-text">
+              I write programs, solve coding problems, and build small tools for
+              automation and learning.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <div class="container">
+        <h2>Contact</h2>
+        <p class="section-subtitle">
+          Want to work together or just say hi? Fill the form below or update
+          this section with your email / socials.
+        </p>
+
+        <div class="contact-grid">
+          <form class="contact-form" onsubmit="handleSubmit(event)">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input id="name" type="text" placeholder="Your name" required />
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input
+                id="email"
+                type="email"
+                placeholder="you@example.com"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea
+                id="message"
+                placeholder="Write your message here..."
+                required
+              ></textarea>
+            </div>
+
+            <button class="btn btn-primary" type="submit">
+              Send Message
+            </button>
+          </form>
+
+          <div>
+            <div class="card">
+              <h3 class="card-title">Direct Contact</h3>
+              <p class="card-text">
+                You can also replace this text with your direct contact details.
+              </p>
+              <p class="card-text">
+                <strong>Email:</strong> youremail@example.com<br />
+                <strong>Location:</strong> Your City, Your Country
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      © <span id="year"></span> Your Name. Built with HTML &amp; CSS.
+      <br />
+      <a href="#home">Back to top ↑</a>
+    </div>
+  </footer>
+
+  <!-- Simple JS -->
+  <script>
+    // Set current year in footer
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Fake contact submit (just show alert)
+    function handleSubmit(event) {
+      event.preventDefault();
+      alert("Thanks! This is a demo form. You can connect this to backend later.");
+      event.target.reset();
+    }
+  </script>
+</body>
+</html>
